@@ -19,7 +19,7 @@ def detect_faces(face_cascade, frame):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)  # Konversi frame ke grayscale
     return face_cascade.detectMultiScale(
         gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30)
-    )  # Deteksi wajah dalam frame
+    ) 
 
 # Fungsi untuk memproses wajah yang terdeteksi
 def process_faces(faces, frame, folder_name, detected_face):
