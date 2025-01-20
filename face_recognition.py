@@ -17,7 +17,7 @@ def detectFace(image_path, database):
     # Kondisi jika ada wajah yang cocok
     else:
         identity = recognition_df.loc[0, 'identity']
-        # Proses splitting (asumsi nama file = "folder_name\\name.jpg")
+        # Proses splitting (asumsi nama file = "faces data\\name.jpg")
         folder_split = identity.split("\\")
         name_split = folder_split[-1].split('.')
         name = name_split[0]
