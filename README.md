@@ -1,42 +1,23 @@
-# Face Recognition System
-This project uses OpenCV and DeepFace for real-time face detection and recognition from a live camera feed.
+# Face Recognition with DeepFace
+This project demonstrates a simple face recognition system using the DeepFace library. The system is designed to identify a face from an input image by comparing it with a set of pre-stored images in a database.
 
 ## Requirements
+To run this project, you need to install:
 - Python 3.x
-- OpenCV
-- DeepFace
-- Haarcascade XML file (included in OpenCV)
+- DeepFace library
+- Pandas library
 
-## Features
-- Real-Time Face Detection: Uses OpenCV's Haarcascade to detect faces in real-time.
-- Face Recognition: Uses DeepFace to recognize detected faces by comparing them with a database.
-- Temporary File Handling: Extracted faces are temporarily saved as temp.jpg for recognition and deleted after use.
+## Folder Structure
+- faces data/: This folder contains the database of images against which the input image will be compared.
+- temp.jpg: This is the input image file whose face will be recognized.
+- face_recognition.py: The main script containing the face recognition logic.
 
-## Program Flow
-1. Camera setup
-   - The program currently uses the default camera index (0) but can be configured to use a different index if necessary. Update the line cv.VideoCapture(0) to another number if the default camera isn't the correct one.
-2. Face detection
-3. Processing detected face
-   - Draw a rectangle around the face
-   - Crop the face from the frame and save it as temporary file
-4. Face recognition
-   - The program compares the temporary cropped face (temp.jpg) with known faces stored in the folder_name directory. The matching process uses DeepFace to find the closest match based on a similarity threshold        (defaulted to 0.5).
-   - If a match is found:
-     - The identity of the person is displayed in the console.
-     - The face is added to a list of recognized faces to prevent repeated recognition.
-   - If no match is found, it will indicate that no matching face was detected.
-5. The program processes the faces every 1 second, ensuring efficient performance while keeping the recognition process timely.
-6. The program will stop once the 'd' key is pressed
-7. Final output
-   - When the program terminates, it will display a list of recognized faces in the console. If no faces were detected, it will print a message stating that no faces were found during the session.
+## Usage
+1. Place the images of known individuals in the "faces data/" folder. Each image file should be named using the format "name.jpg".
+2. Place the image you want to recognize as "temp.jpg" in the root directory.
+3. Run the face_recognition.py script
+4. The program will display the name of the person if the face is recognized, or "Wajah tidak terdaftar" if the face is not found in the database.
 
-## Potential Improvements
-1. Handling multiple faces in 1 frame
-   - When many faces are detected in one frame, the program takes longer because each face is processed sequentially, and face matching takes considerable time, especially if a large number of faces are detected.
-2. Threshold
-   - The program currently uses a fixed threshold (threshold=0.6) in DeepFace for face matching. However, this value may not be suitable for all cases.
-3. Better face database management
-   - If the faces data folder contains a large number of face images, the matching process can become very slow. This is especially problematic when the number of images that need to be matched continues to grow.
-4. Face processing interval
-   - The program currently processes faces every 1 second. This interval can be adjusted depending on the use case or system performance.
-     
+## Notes
+1. Ensure that the images in the "faces data/" folder are clear and properly labeled.
+2. The enforce_detection=False parameter in DeepFace.find() allows the function to process images even if a face is not detected by the default face detector.
