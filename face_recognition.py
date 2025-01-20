@@ -10,7 +10,7 @@ def detectFace(image_path, database):
     # Mengambil data yang paling cocok
     recognition_df = recognition[0]
 
-    # Kondisi jika tidak ada wajah yang cocok
+    # Kondisi jika tidak ada wajah yang cocok atau wajah tidak terbaca
     if len(recognition_df) == 0:
         return "Wajah tidak terdaftar"
     
